@@ -1,6 +1,7 @@
 package com.course.common.service;
 
 import com.course.common.entity.Test;
+import com.course.common.entity.TestExample;
 import com.course.common.mapper.TestMapper;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class TestServiceImpl implements TestService {
     private TestMapper testMapper;
     @Override
     public List<Test> list() {
-        return testMapper.list();
+        TestExample testExample=new TestExample();
+        testExample.createCriteria().andIdEqualTo("1");
+        testExample.setOrderByClause("id desc");
+        return testMapper.selectByExample(testExample);
     }
 }
