@@ -33,6 +33,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
+
+        <!--引入依赖-->
+        <dependency>
+            <artifactId>common</artifactId>
+            <groupId>com.course</groupId>
+        </dependency>
+
     </dependencies>
 
 </project>

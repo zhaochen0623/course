@@ -20,13 +20,13 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>course</name>
     <description>Demo project for Spring Boot</description>
-<!--    属性变量-->
+    <!--    属性变量-->
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
     </properties>
 
-<!--    依赖管理-->
+    <!--    依赖管理-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -47,9 +47,14 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>5.1.37</version>
             </dependency>
+            <dependency>
+                <groupId>com.course</groupId>
+                <artifactId>common</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-<!--    maven插件-->
+    <!--    maven插件-->
     <build>
         <plugins>
             <plugin>
