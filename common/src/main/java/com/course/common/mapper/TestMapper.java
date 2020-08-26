@@ -1,6 +1,7 @@
-package com.course.system.mapper;
+package com.course.common.mapper;
 
-import com.course.system.entity.Test;
+
+import com.course.common.entity.Test;
 
 import java.util.List;
 

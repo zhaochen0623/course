@@ -1,6 +1,7 @@
-package com.course.system.service;
+package com.course.common.service;
 
-import com.course.system.entity.Test;
+
+import com.course.common.entity.Test;
 
 import java.util.List;
 
