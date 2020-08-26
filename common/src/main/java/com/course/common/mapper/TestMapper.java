@@ -1,18 +1,30 @@
 package com.course.common.mapper;
 
-
 import com.course.common.entity.Test;
-
+import com.course.common.entity.TestExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-/**
- * @ClassName TestMapper
- * @Author ASUS
- * @Date 2020-08-26 13:56
- * @Version 1.0
- **/
 public interface TestMapper {
+    long countByExample(TestExample example);
 
+    int deleteByExample(TestExample example);
 
-    public List<Test> list();
+    int deleteByPrimaryKey(String id);
+
+    int insert(Test record);
+
+    int insertSelective(Test record);
+
+    List<Test> selectByExample(TestExample example);
+
+    Test selectByPrimaryKey(String id);
+
+    int updateByExampleSelective(@Param("record") Test record, @Param("example") TestExample example);
+
+    int updateByExample(@Param("record") Test record, @Param("example") TestExample example);
+
+    int updateByPrimaryKeySelective(Test record);
+
+    int updateByPrimaryKey(Test record);
 }
