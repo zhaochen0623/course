@@ -16,7 +16,7 @@ import java.util.List;
  * @Version 1.0
  **/
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/admin/chapter")
 public class ChapterController {
     @Autowired
     private ChapterService chapterService;
