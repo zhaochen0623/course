@@ -1,6 +1,7 @@
 package com.course.common.service;
 
 import com.course.common.dto.ChapterDto;
+import com.course.common.dto.PageDto;
 import com.course.common.entity.Chapter;
 import com.course.common.entity.ChapterExample;
 
@@ -13,6 +14,6 @@ import java.util.List;
  * @Version 1.0
  **/
 public interface ChapterService {
-    List<ChapterDto> selectByExample();
+    public void list(PageDto pageDto);
 
 }

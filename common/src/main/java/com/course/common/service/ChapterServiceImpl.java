@@ -1,10 +1,12 @@
 package com.course.common.service;
 
 import com.course.common.dto.ChapterDto;
+import com.course.common.dto.PageDto;
 import com.course.common.entity.Chapter;
 import com.course.common.entity.ChapterExample;
 import com.course.common.mapper.ChapterMapper;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,20 +28,20 @@ public class ChapterServiceImpl implements ChapterService {
 
 
     @Override
-    public List<ChapterDto> selectByExample() {
-        PageHelper.startPage(1,1);
+    public void list(PageDto pageDto) {
+        PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         ChapterExample chapterExample = new ChapterExample();
-//        chapterExample.createCriteria().andIdEqualTo("");
-//        chapterExample.setOrderByClause("id desc");
-//
         List<Chapter> chapterList = chapterMapper.selectByExample(chapterExample);
-        List<ChapterDto> chapterDtos = new ArrayList<ChapterDto>();
+
+        PageInfo<Chapter> pageInfo=new PageInfo<>(chapterList);
+        pageDto.setTotal(pageInfo.getTotal());
+        List<ChapterDto> chapterDtoList = new ArrayList<ChapterDto>();
         for (int i = 0,l=chapterList.size(); i < l;  i++){
             Chapter chapter=chapterList.get(i);
             ChapterDto chapterDto=new ChapterDto();
             BeanUtils.copyProperties(chapter,chapterDto);
-            chapterDtos.add(chapterDto);
+            chapterDtoList.add(chapterDto);
         }
-        return chapterDtos;
+        pageDto.setList(chapterDtoList);
     }
 }
