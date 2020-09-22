@@ -2,6 +2,7 @@ package com.course.business.controller;
 
 import com.course.common.dto.ChapterDto;
 import com.course.common.dto.PageDto;
+import com.course.common.dto.ResponseDto;
 import com.course.common.service.ChapterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,10 +35,12 @@ public class ChapterController {
      * @return
      */
     @RequestMapping("/list")
-    public PageDto list(@RequestBody PageDto pageDto){
+    public ResponseDto list(@RequestBody PageDto pageDto){
         LOG.info("PageDto:{}"+pageDto);
+        ResponseDto responseDto=new ResponseDto();
         chapterService.list(pageDto);
-        return pageDto;
+        responseDto.setContent(pageDto);
+        return responseDto;
     }
 
     /**
@@ -46,10 +49,12 @@ public class ChapterController {
      * @return
      */
     @RequestMapping("/add")
-    public ChapterDto add(@RequestBody ChapterDto chapterDto){
+    public ResponseDto add(@RequestBody ChapterDto chapterDto){
+        ResponseDto responseDto=new ResponseDto();
         LOG.info("ChapterDto:{}"+chapterDto);
         chapterService.add(chapterDto);
-        return chapterDto;
+        responseDto.setContent(chapterDto);
+        return responseDto;
     }
 
 }
