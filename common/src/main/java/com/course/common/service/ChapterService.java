@@ -16,4 +16,6 @@ import java.util.List;
 public interface ChapterService {
     public void list(PageDto pageDto);
 
+    public void add(ChapterDto chapterDto);
+
 }
