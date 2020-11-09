@@ -5,6 +5,7 @@ import com.course.common.dto.PageDto;
 import com.course.common.entity.Chapter;
 import com.course.common.entity.ChapterExample;
 import com.course.common.mapper.ChapterMapper;
+import com.course.common.util.CopyUtil;
 import com.course.common.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -47,10 +48,21 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
-    public void add(ChapterDto chapterDto) {
+    public void save(ChapterDto chapterDto) {
         chapterDto.setId(UuidUtil.getShortUuid());
         Chapter chapter=new Chapter();
         BeanUtils.copyProperties(chapterDto,chapter);
         chapterMapper.insert(chapter);
+    }
+    @Override
+    public void insert(ChapterDto chapterDto) {
+        chapterDto.setId(UuidUtil.getShortUuid());
+        Chapter chapter= CopyUtil.copy(chapterDto,Chapter.class);
+        chapterMapper.insert(chapter);
+    }
+    @Override
+    public void update(ChapterDto chapterDto) {
+        Chapter chapter= CopyUtil.copy(chapterDto,Chapter.class);
+        chapterMapper.updateByPrimaryKey(chapter);
     }
 }

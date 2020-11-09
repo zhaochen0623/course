@@ -3,7 +3,10 @@ package com.course.business.controller;
 import com.course.common.dto.ChapterDto;
 import com.course.common.dto.PageDto;
 import com.course.common.dto.ResponseDto;
+import com.course.common.entity.Chapter;
 import com.course.common.service.ChapterService;
+import com.course.common.util.CopyUtil;
+import com.course.common.util.UuidUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,13 +51,24 @@ public class ChapterController {
      * @param chapterDto
      * @return
      */
-    @RequestMapping("/add")
-    public ResponseDto add(@RequestBody ChapterDto chapterDto){
-        ResponseDto responseDto=new ResponseDto();
-        LOG.info("ChapterDto:{}"+chapterDto);
-        chapterService.add(chapterDto);
-        responseDto.setContent(chapterDto);
-        return responseDto;
+    @RequestMapping("/save")
+    public ChapterDto save(@RequestBody ChapterDto chapterDto){
+        LOG.info("chapterDto:{}"+chapterDto);
+        chapterService.save(chapterDto);
+        return chapterDto;
+    }/**
+     *添加
+     * @param chapterDto
+     * @return
+     */
+    @RequestMapping("/insert")
+    public void insert(@RequestBody ChapterDto chapterDto){
+        chapterDto.setId(UuidUtil.getShortUuid());
+        Chapter chapter= CopyUtil.copy(chapterDto,Chapter.class);
+
+    }
+    @RequestMapping("/update")
+    public void update(@RequestBody ChapterDto chapterDto){
     }
 
 }
