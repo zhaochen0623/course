@@ -52,10 +52,12 @@ public class ChapterController {
      * @return
      */
     @RequestMapping("/save")
-    public ChapterDto save(@RequestBody ChapterDto chapterDto){
+    public ResponseDto save(@RequestBody ChapterDto chapterDto){
         LOG.info("chapterDto:{}"+chapterDto);
+        ResponseDto responseDto=new ResponseDto();
         chapterService.save(chapterDto);
-        return chapterDto;
+        responseDto.setContent(chapterDto);
+        return responseDto;
     }/**
      *添加
      * @param chapterDto

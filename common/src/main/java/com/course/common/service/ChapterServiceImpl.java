@@ -12,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,20 +50,20 @@ public class ChapterServiceImpl implements ChapterService {
 
     @Override
     public void save(ChapterDto chapterDto) {
-        chapterDto.setId(UuidUtil.getShortUuid());
-        Chapter chapter=new Chapter();
-        BeanUtils.copyProperties(chapterDto,chapter);
+        Chapter chapter= CopyUtil.copy(chapterDto,Chapter.class);
+        if (StringUtils.isEmpty(chapterDto.getId())){
+            this.insert(chapter);
+        }else {
+            this.update(chapter);
+        }
+    }
+    @Override
+    public void insert(Chapter chapter) {
+        chapter.setId(UuidUtil.getShortUuid());
         chapterMapper.insert(chapter);
     }
     @Override
-    public void insert(ChapterDto chapterDto) {
-        chapterDto.setId(UuidUtil.getShortUuid());
-        Chapter chapter= CopyUtil.copy(chapterDto,Chapter.class);
-        chapterMapper.insert(chapter);
-    }
-    @Override
-    public void update(ChapterDto chapterDto) {
-        Chapter chapter= CopyUtil.copy(chapterDto,Chapter.class);
+    public void update(Chapter chapter) {
         chapterMapper.updateByPrimaryKey(chapter);
     }
 }

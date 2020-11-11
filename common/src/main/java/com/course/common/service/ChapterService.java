@@ -18,7 +18,7 @@ public interface ChapterService {
 
     public void save(ChapterDto chapterDto);
 
-    public void insert(ChapterDto chapterDto);
+    public void insert(Chapter chapter);
 
-    public void update(ChapterDto chapterDto);
+    public void update(Chapter chapteDto);
 }
