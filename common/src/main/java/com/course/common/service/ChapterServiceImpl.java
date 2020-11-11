@@ -66,4 +66,9 @@ public class ChapterServiceImpl implements ChapterService {
     public void update(Chapter chapter) {
         chapterMapper.updateByPrimaryKey(chapter);
     }
+
+    @Override
+    public void delete(String id) {
+        chapterMapper.deleteByPrimaryKey(id);
+    }
 }

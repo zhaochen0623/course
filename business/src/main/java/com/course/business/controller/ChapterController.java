@@ -10,10 +10,7 @@ import com.course.common.util.UuidUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -37,7 +34,7 @@ public class ChapterController {
      * @param pageDto
      * @return
      */
-    @RequestMapping("/list")
+    @PostMapping("/list")
     public ResponseDto list(@RequestBody PageDto pageDto){
         LOG.info("PageDto:{}"+pageDto);
         ResponseDto responseDto=new ResponseDto();
@@ -51,26 +48,21 @@ public class ChapterController {
      * @param chapterDto
      * @return
      */
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public ResponseDto save(@RequestBody ChapterDto chapterDto){
         LOG.info("chapterDto:{}"+chapterDto);
         ResponseDto responseDto=new ResponseDto();
         chapterService.save(chapterDto);
         responseDto.setContent(chapterDto);
         return responseDto;
-    }/**
-     *添加
-     * @param chapterDto
-     * @return
-     */
-    @RequestMapping("/insert")
-    public void insert(@RequestBody ChapterDto chapterDto){
-        chapterDto.setId(UuidUtil.getShortUuid());
-        Chapter chapter= CopyUtil.copy(chapterDto,Chapter.class);
-
     }
-    @RequestMapping("/update")
-    public void update(@RequestBody ChapterDto chapterDto){
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseDto delete(@PathVariable String id){
+        LOG.info("id:{}",id);
+        ResponseDto responseDto=new ResponseDto();
+        chapterService.delete(id);
+        return responseDto;
     }
 
 }

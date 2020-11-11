@@ -14,11 +14,13 @@ import java.util.List;
  * @Version 1.0
  **/
 public interface ChapterService {
-    public void list(PageDto pageDto);
+    void list(PageDto pageDto);
 
-    public void save(ChapterDto chapterDto);
+    void save(ChapterDto chapterDto);
 
-    public void insert(Chapter chapter);
+     void insert(Chapter chapter);
 
-    public void update(Chapter chapteDto);
+    void update(Chapter chapteDto);
+
+    void delete(String id);
 }
